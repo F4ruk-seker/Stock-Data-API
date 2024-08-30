@@ -1,0 +1,2 @@
+from .offer_create_update_test import OfferBulkUpdateTest
+from .public_offer_create_test import ActivePublicOfferBulkUpdateTest

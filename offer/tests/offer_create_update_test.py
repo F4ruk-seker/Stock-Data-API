@@ -9,12 +9,12 @@ class OfferBulkUpdateTest(TestCase):
 
     def setUp(self):
         super().setUp()
+        self.data_file_name = 'offer_data.json'
         self.test_data = self.load_test_data()
         self.offer_url = resolve_url(reverse('api:offer:offer_bulk'))
 
-    @staticmethod
-    def load_test_data():
-        with open(TEST_DATA_DIR / 'offer_data.json', 'r', encoding='utf-8') as df:
+    def load_test_data(self):
+        with open(TEST_DATA_DIR / self.data_file_name, 'r', encoding='utf-8') as df:
             return json.loads(df.read())
 
     def test_create_offers(self):
