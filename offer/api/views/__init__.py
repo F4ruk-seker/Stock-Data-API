@@ -1,0 +1,2 @@
+from .offer_bulk__create_update_view import OfferBulkCreateUpdateView
+
