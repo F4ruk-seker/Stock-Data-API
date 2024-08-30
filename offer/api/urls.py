@@ -4,5 +4,5 @@ from .views import *
 app_name: str = 'offer'
 
 urlpatterns = [
-    path('offer', OfferBulkCreateUpdateView.as_view())
+    path('bulk/offers', OfferBulkCreateUpdateView.as_view())
 ]

@@ -1,4 +1,5 @@
 from .base import *
+import os
 
 
 CORS_ALLOW_ALL_ORIGINS = True
@@ -20,3 +21,27 @@ DATABASES = {
 AUTH_PASSWORD_VALIDATORS = [
 ]
 
+#
+#
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'handlers': {
+#         'console': {
+#             'level': 'DEBUG',
+#             'class': 'logging.StreamHandler',
+#         },
+#         'file': {
+#             'level': 'ERROR',
+#             'class': 'logging.FileHandler',
+#             'filename': os.path.join(BASE_DIR, 'django_error.log'),
+#         },
+#     },
+#     'loggers': {
+#         'django': {
+#             'handlers': ['console', 'file'],
+#             'level': 'DEBUG',
+#             'propagate': True,
+#         },
+#     },
+# }
