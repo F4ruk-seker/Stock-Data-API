@@ -29,3 +29,5 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+TEST_DATA_DIR = BASE_DIR / 'test_data'
