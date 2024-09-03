@@ -8,9 +8,6 @@ urlpatterns = [
     path('bulk/public-offer', ActivePublicOfferBulkCreateView.as_view(), name='active_public_offer')
 ]+[
     # User API way
-    path('favorites', FavoriteOffersListView.as_view({
-        'get': 'list',
-        'post': 'create',
-        'delete': 'destroy',
-    }))
+    path('favorites', FavoriteOffersListView.as_view()),
+    path('favorites/<code>', FavoriteCreateDeleteView.as_view())
 ]
