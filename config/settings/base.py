@@ -45,6 +45,7 @@ INSTALLED_APPS = [
 ]+[
     # your apps
     'offer',
+    'user',
 ]+[
     # third party app
     'rest_framework',
