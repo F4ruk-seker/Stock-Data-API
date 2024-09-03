@@ -4,6 +4,8 @@ import pytz
 
 
 class SlotModel(models.Model):
+    objects = models.Manager()
+
     class ProgresType(models.TextChoices):
         T_SALE = 't_sale', 't_sale'
         T_1_SALE = 't_1_sale', 't_1_sale'

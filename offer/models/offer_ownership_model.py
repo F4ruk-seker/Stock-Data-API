@@ -3,6 +3,8 @@ from django.db import models
 
 
 class OfferOwnershipModel(models.Model):
+    objects = models.Manager()
+
     offer = models.ForeignKey('offer.OfferModel', on_delete=models.CASCADE)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     # piece = models.IntegerField(default=0)
@@ -32,5 +34,5 @@ class OfferOwnershipModel(models.Model):
             'remaining_lots': remaining_lots
         }
 
-    def get_slots(self) -> list:
-        return self.slots
+    # def get_slots(self) -> list:
+    #     return self.slots

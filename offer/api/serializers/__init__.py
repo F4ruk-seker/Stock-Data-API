@@ -1,3 +1,4 @@
 from .offer_serializer import OfferSerializer
 from .active_public_offer_serializer import ActivePublicOfferSerializer
 from .favorite_serializer import FavoriteSerializer
+from .slot_serializer import SlotSerializer

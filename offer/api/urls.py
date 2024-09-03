@@ -9,5 +9,10 @@ urlpatterns = [
 ]+[
     # User API way
     path('favorites', FavoriteOffersListView.as_view(), name='favorites'),
-    path('favorites/<code>', FavoriteCreateDeleteView.as_view(), name='favorite')
+    path('favorites/<code>', FavoriteCreateDeleteView.as_view(), name='favorite'),
+    path('<code>/slot', SlotCreateView.as_view()),
+    path('<code>/slot/<int:pk>', SlotRetrieveUpdateDestroyView.as_view())
+    # path('slot')
+    # path('slot CRUD')
+    # path(' hisseler')
 ]
