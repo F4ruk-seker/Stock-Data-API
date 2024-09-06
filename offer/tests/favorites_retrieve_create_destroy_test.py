@@ -29,10 +29,10 @@ class FavoritesRetrieveCreateDestroyTest(APITestCase):
     @staticmethod
     def create_offer():
         fake = Faker()
-        for _ in range(10):  # Adjust the range for the number of fake offers you want to create
+        for _ in range(10):
             OfferModel.objects.create(
                 name=fake.word(),
-                code=fake.unique.word()[:10],  # Ensure the code is unique and of length 10
+                code=fake.unique.word()[:10],
                 current_price=fake.pydecimal(left_digits=5, right_digits=2, positive=True),
                 max_price=fake.pydecimal(left_digits=5, right_digits=2, positive=True),
                 min_price=fake.pydecimal(left_digits=5, right_digits=2, positive=True),

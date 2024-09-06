@@ -12,7 +12,4 @@ urlpatterns = [
     path('favorites/<code>', FavoriteCreateDeleteView.as_view(), name='favorite'),
     path('<code>/slot', SlotCreateView.as_view()),
     path('<code>/slot/<int:pk>', SlotRetrieveUpdateDestroyView.as_view())
-    # path('slot')
-    # path('slot CRUD')
-    # path(' hisseler')
 ]
