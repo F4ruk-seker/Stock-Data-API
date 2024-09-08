@@ -4,3 +4,4 @@ from .favorite_serializer import FavoriteSerializer
 from .slot_serializer import SlotSerializer
 from .offer_detail_serializer import OfferDetailSerializer
 from .offer_price_flow_serializer import OfferPriceSerializer
+from .offer_ownership_serializer import ShareOwnershipSerializer

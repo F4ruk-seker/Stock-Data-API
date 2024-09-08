@@ -6,3 +6,4 @@ from .slot_retrieve_update_destroy_view import SlotRetrieveUpdateDestroyView
 from .slot_create_view import SlotCreateView
 from .offers_list_view import OfferListView
 from .offer_detail_view import OfferDetailView
+from .offer_owner_list_view import OfferOwnerListView

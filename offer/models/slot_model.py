@@ -21,6 +21,9 @@ class SlotModel(models.Model):
     class Meta:
         ordering: tuple = 'action_time',
 
+    def get_price(self):
+        return self.price
+
     @property
     def is_buy(self):
         return self.progres_type == self.ProgresType.BUY
