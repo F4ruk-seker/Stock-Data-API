@@ -1,0 +1,3 @@
+from .asset_create_update_test import AssetBulkUpdateTest
+from .public_asset_create_test import ActivePublicAssetBulkUpdateTest
+from .favorites_retrieve_create_destroy_test import FavoritesRetrieveCreateDestroyTest

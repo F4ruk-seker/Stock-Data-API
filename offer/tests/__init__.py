@@ -1,3 +1,0 @@
-from .offer_create_update_test import OfferBulkUpdateTest
-from .public_offer_create_test import ActivePublicOfferBulkUpdateTest
-from .favorites_retrieve_create_destroy_test import FavoritesRetrieveCreateDestroyTest
