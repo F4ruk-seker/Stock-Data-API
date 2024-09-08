@@ -11,5 +11,7 @@ urlpatterns = [
     path('favorites', FavoriteOffersListView.as_view(), name='favorites'),
     path('favorites/<code>', FavoriteCreateDeleteView.as_view(), name='favorite'),
     path('<code>/slot', SlotCreateView.as_view()),
-    path('<code>/slot/<int:pk>', SlotRetrieveUpdateDestroyView.as_view())
+    path('<code>/slot/<int:pk>', SlotRetrieveUpdateDestroyView.as_view()),
+    path('<code>', OfferDetailView.as_view()),
+    path('', OfferListView.as_view())
 ]

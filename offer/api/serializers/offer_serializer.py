@@ -12,16 +12,16 @@ class OfferSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = OfferModel
-        fields = '__all__'
+        # fields = '__all__'
+        exclude: tuple = 'updated_by', 'price_flow'
 
     def to_internal_value(self, data):
         if not isinstance(data, dict):
             raise serializers.ValidationError('Expected a dictionary but got {}'.format(type(data).__name__))
 
-        # Fiyatları parse etme
         def parse_price(value):
-            if not value:  # Boş değerler için
-                return Decimal('0.00')  # Zero olarak döndür
+            if not value:
+                return Decimal('0.00')
             cleaned_value = value.replace('.', '').replace(',', '.').strip()
             try:
                 return Decimal(cleaned_value)
@@ -42,7 +42,6 @@ class OfferSerializer(serializers.ModelSerializer):
                 logger.error(error_message)
                 raise serializers.ValidationError(error_message)
 
-        # Veriyi dönüştür
         internal_data = {
             'name': data.get('name'),
             'code': data.get('code'),

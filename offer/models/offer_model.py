@@ -9,6 +9,7 @@ class OfferModel(models.Model):
     current_price = models.DecimalField(max_digits=20, decimal_places=2)
     max_price = models.DecimalField(max_digits=20, decimal_places=2)
     min_price = models.DecimalField(max_digits=20, decimal_places=2)
+    price_flow = models.ManyToManyField('OfferPriceModel', blank=True)
     percentage = models.DecimalField(max_digits=5, decimal_places=2)
 
     logo = models.URLField(default='', blank=True, null=True)
@@ -19,4 +20,12 @@ class OfferModel(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     updated_by = models.ForeignKey(User, null=True, default=None, blank=True, on_delete=models.CASCADE)
+
+    def get_price_flow(self):
+        return self.price_flow.order_by('created_at')
+
+
+class OfferPriceModel(models.Model):
+    current_price = models.DecimalField(max_digits=20, decimal_places=2)
+    created_at = models.DateTimeField(auto_now_add=True)
 
