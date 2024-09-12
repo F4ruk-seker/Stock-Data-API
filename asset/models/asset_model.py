@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from .utils import parse_price
+from django.utils.safestring import mark_safe
 
 
 class AssetPriceModel(models.Model):
@@ -28,17 +28,21 @@ class AssetModel(models.Model):
 
     updated_by = models.ForeignKey(User, null=True, default=None, blank=True, on_delete=models.CASCADE)
 
-    def save(self, *args, **kwargs):
-        if self.pk is not None and self.current_price is not None:
-            previous = AssetModel.objects.get(pk=self.pk)
-            super().save(*args, **kwargs)
-            if not previous.current_price == self.current_price:
-                AssetPriceModel.objects.create(current_price=self.current_price, asset=self)
+    def image_tag(self):
+        if image_src := self.logo:
+            return mark_safe(f'<img src="{image_src}" width="30px" height="30px" style="object-fit:cover">')
         else:
-            super().save(*args, **kwargs)
-            if self.current_price is not None:
-                AssetPriceModel.objects.create(current_price=self.current_price, asset=self)
-        super().save(*args, **kwargs)
+            return mark_safe('<span style="color:red">None</span>')
+
+    def chart_tag(self):
+        if image_src := self.chart:
+            return mark_safe(f'<img src="{image_src}" width="30px" height="30px" style="object-fit:cover">')
+        else:
+            return mark_safe('<span style="color:red">None</span>')
+
+    image_tag.short_description = 'Image'
+
+    chart_tag.short_description = 'Chart'
 
     def get_price_flow(self):
         return self.AssetPriceModel.filter(asset=self).order_by('created_at')

@@ -9,11 +9,27 @@ logger = logging.getLogger(__name__)
 
 
 class AssetSerializer(serializers.ModelSerializer):
+    def create(self, validated_data):
+
+        print(validated_data)
+
+        if isinstance(validated_data, dict):
+            code = validated_data.get('code')
+            instance, created = AssetModel.objects.update_or_create(
+                code=code,
+                defaults=validated_data
+            )
+            return instance
+
+        elif isinstance(validated_data, list):
+            instances = [AssetModel(**data) for data in validated_data]
+            return AssetModel.objects.bulk_create(instances)
+        return None
 
     class Meta:
         model = AssetModel
         # fields = '__all__'
-        exclude: tuple = 'updated_by', 'price_flow'
+        exclude: tuple = 'updated_by',
 
     def to_internal_value(self, data):
         if not isinstance(data, dict):
@@ -56,3 +72,4 @@ class AssetSerializer(serializers.ModelSerializer):
         }
 
         return super().to_internal_value(internal_data)
+

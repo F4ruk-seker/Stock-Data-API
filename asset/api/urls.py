@@ -7,9 +7,9 @@ urlpatterns = [
     path('bulk/public-asset', ActivePublicAssetBulkCreateView.as_view(), name='active_public_asset')
 ]+[
     # User API way
+    path('mine', AssetOwnerListView.as_view()),
     path('favorites', FavoriteAssetsListView.as_view(), name='favorites'),
     path('favorites/<code>', FavoriteCreateDeleteView.as_view(), name='favorite'),
-    path('mine', AssetOwnerListView.as_view()),
     path('<code>/slot', SlotCreateView.as_view()),
     path('<code>/slot/<int:pk>', SlotRetrieveUpdateDestroyView.as_view()),
     path('<code>', AssetDetailView.as_view()),
