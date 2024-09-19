@@ -20,7 +20,7 @@ from django.conf import settings
 from config.settings.base import env
 
 
-urlpatterns = [
+urlpatterns: [path] = [
     path('admin/' if settings.DEBUG else env('PRODUCT_ADMIN_PATH'), admin.site.urls),
     path('api/', include('api.urls'), name='api')
 ]
