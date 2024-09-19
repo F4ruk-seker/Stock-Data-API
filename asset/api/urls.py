@@ -4,7 +4,7 @@ from .views import *
 app_name: str = 'asset'
 urlpatterns = [
     path('bulk/assets', AssetBulkCreateUpdateView.as_view(), name='asset_bulk'),
-    path('bulk/public-asset', ActivePublicAssetBulkCreateView.as_view(), name='active_public_asset')
+    path('bulk/public-assets', ActivePublicAssetBulkCreateView.as_view(), name='active_public_asset')
 ]+[
     # User API way
     path('mine', AssetOwnerListView.as_view()),
