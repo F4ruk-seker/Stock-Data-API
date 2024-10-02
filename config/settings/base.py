@@ -30,13 +30,13 @@ SECRET_KEY = env('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
 ALLOWED_HOSTS = ['*']
 
 # Application definition
 
 INSTALLED_APPS = [
     # unfold
+    'django_celery_beat',
     'unfold',
     'unfold.contrib.filters',
     'unfold.contrib.forms',
@@ -61,7 +61,8 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'rest_framework_api_key',
     'corsheaders',
-    'import_export'
+    'import_export',
+    'django_celery_results'
 ]
 
 MIDDLEWARE = [
@@ -138,3 +139,22 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 DATASET_DIR = BASE_DIR / 'dataset'
+
+# CELERY
+
+# settings.py
+
+# Redis broker ayarları
+# CELERY_BROKER_URL = 'redis://localhost:32768/0'
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+
+# Sonuçlar için backend ayarı (opsiyonel)
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+# CELERY_RESULT_BACKEND = 'django-db'
+
+CELERY_TIMEZONE = 'UTC'  # or your timezone
+# Görev sonuçlarını nakleden backend (opsiyonel)
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'

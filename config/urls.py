@@ -19,9 +19,11 @@ from django.urls import path, include
 from django.conf import settings
 from config.settings.base import env
 
+from asset.views import task_test
 
 urlpatterns: [path] = [
     path('admin/' if settings.DEBUG else env('PRODUCT_ADMIN_PATH'), admin.site.urls),
-    path('api/', include('api.urls'), name='api')
+    path('api/', include('api.urls'), name='api'),
+    path('', task_test)
 ]
 

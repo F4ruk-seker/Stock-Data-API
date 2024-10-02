@@ -1,7 +1,6 @@
 from django.contrib import admin
 from .models import *
 from .models.asset_model import AssetPriceModel
-
 from unfold.contrib.import_export.forms import ExportForm
 from unfold.admin import ModelAdmin
 
