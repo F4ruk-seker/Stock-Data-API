@@ -58,3 +58,9 @@
     ```
 
     You can log in to the [Admin Panel](http://127.0.0.1:8000/admin/) with the credentials you provided.
+
+9. Celey Run Worker
+
+   ```bash
+   celery -A config worker --loglevel=info --concurrency=4 -P threads
+   ```
