@@ -22,11 +22,11 @@ class AssetOwnershipModel(models.Model):
                 if transaction.progres_type == transaction.ProgresType.BUY:
                     remaining_lots += transaction.quantity
                     # total_profit += float(transaction.price) * transaction.quantity
-                    total_profit += transaction.quantity * float(self.share.current_price)
+                    total_profit += transaction.quantity * float(self.asset.current_price)
                 else:
                     sold_lots = transaction.quantity
                     sale_price = float(transaction.price)
-                    profit = sold_lots * (sale_price - float(self.share.current_price))
+                    profit = sold_lots * (sale_price - float(self.asset.current_price))
                     total_profit += profit
                     remaining_lots -= sold_lots
         return {

@@ -24,5 +24,7 @@ class ActivePublicAssetingModel(models.Model):
     # Distribution method (e.g., Equal to individual investors)
     distribution_method = models.CharField(max_length=100)
 
+    objects = models.Manager()
+
     def __str__(self):
         return self.title

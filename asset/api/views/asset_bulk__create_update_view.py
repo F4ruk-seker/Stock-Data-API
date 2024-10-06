@@ -37,7 +37,6 @@ class AssetBulkCreateUpdateView(APIView):
                 serializer.is_valid(raise_exception=True)
                 serializer.save()
             response_data['updated'] = [self.get_serializer(instance).data for instance in update_instances]
-        print('update')
         # Bulk create
         if bulk_create_data:
             create_serializer = self.get_serializer(data=bulk_create_data, many=True)

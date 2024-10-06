@@ -6,3 +6,5 @@ from asset.api.serializers import ShareOwnershipSerializer
 class AssetOwnerListView(ListAPIView):
     serializer_class = ShareOwnershipSerializer
     queryset = AssetOwnershipModel.objects.all()
+    permission_classes = []
+    authentication_classes = []
