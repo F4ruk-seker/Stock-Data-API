@@ -142,36 +142,13 @@ DATASET_DIR = BASE_DIR / 'dataset'
 
 # CELERY
 
-# settings.py
-
 # Redis broker ayarları
-# # CELERY_BROKER_URL = 'redis://localhost:32768/0'
-# CELERY_BROKER_URL = 'redis://localhost:6379/0'
-#
-# # Sonuçlar için backend ayarı (opsiyonel)
-# CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
-# # CELERY_RESULT_BACKEND = 'django-db'
-#
-# CELERY_TIMEZONE = 'UTC'  # or your timezone
-# # Görev sonuçlarını nakleden backend (opsiyonel)
-# CELERY_ACCEPT_CONTENT = ['json']
-# CELERY_TASK_SERIALIZER = 'json'
-# CELERY_RESULT_SERIALIZER = 'json'
-# CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
-# RabbitMQ broker URL ayarı
-CELERY_BROKER_URL = 'amqp://pars:pars@127.0.0.1:5672//'  # Kullanıcı adı ve şifreyi gerektiği gibi ayarlayın
+CELERY_BROKER_URL: str = env('CELERY_BROKER_URL')
+CELERY_RESULT_BACKEND: str = env('CELERY_RESULT_BACKEND', default='django-db')
 
-# Sonuçlar için backend ayarı (opsiyonel)
-# Eğer RabbitMQ'yu sadece broker olarak kullanacaksanız, result backend'i Redis ile devam edebilirsiniz
-CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'  # Bu ayarı Redis olarak bırakabilirsiniz ya da Django DB kullanabilirsiniz
+CELERY_TIMEZONE: str = 'UTC'  # or your timezone
 
-# Saat dilimi ayarı
-CELERY_TIMEZONE = 'UTC'  # Kendi saat diliminize göre ayarlayın
-
-# Kabul edilen içerik türleri
-CELERY_ACCEPT_CONTENT = ['json']
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_SERIALIZER = 'json'
-
-# Celery Beat Scheduler ayarı
-CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
+CELERY_ACCEPT_CONTENT: list = ['json']
+CELERY_TASK_SERIALIZER: str = 'json'
+CELERY_RESULT_SERIALIZER: str = 'json'
+CELERY_BEAT_SCHEDULER: str = 'json'
