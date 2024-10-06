@@ -61,7 +61,7 @@ INSTALLED_APPS = [
     'rest_framework_api_key',
     'corsheaders',
     'import_export',
-    'django_celery_results',
+    # 'django_celery_results',
     'django_celery_beat',
 ]
 
@@ -151,4 +151,4 @@ CELERY_TIMEZONE: str = 'UTC'  # or your timezone
 CELERY_ACCEPT_CONTENT: list = ['json']
 CELERY_TASK_SERIALIZER: str = 'json'
 CELERY_RESULT_SERIALIZER: str = 'json'
-CELERY_BEAT_SCHEDULER: str = 'json'
+CELERY_BEAT_SCHEDULER: str = 'celery.beat.PersistentScheduler'

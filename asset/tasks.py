@@ -6,6 +6,14 @@ logger = logging.getLogger(__name__)
 
 
 @shared_task
+def yaz_hello_world():
+    logger.info(f"Hello World at {datetime.now()}")
+    print(f"Hello World at {datetime.now()}")
+    with open('hello_world.txt', 'a+', encoding='utf-8') as f:
+        f.write(f"Hello World at {datetime.now()}\n")
+
+
+@shared_task
 def uzun_sureli_gorev(*args, **kwargs):
     print(args)
     print(kwargs)
