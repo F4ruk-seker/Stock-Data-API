@@ -33,17 +33,17 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 # Application definition
+DJANGO_UNFOLD_ADMIN_APPS: list = [
+    "unfold",  # before django.contrib.admin
+    "unfold.contrib.filters",  # optional, if special filters are needed
+    "unfold.contrib.forms",  # optional, if special form elements are needed
+    "unfold.contrib.inlines",  # optional, if special inlines are needed
+    "unfold.contrib.import_export",  # optional, if django-import-export package is used
+    "unfold.contrib.guardian",  # optional, if django-guardian package is used
+    "unfold.contrib.simple_history",  # optional, if django-simple-history package is used
+]
 
-INSTALLED_APPS = [
-    # unfold
-    'unfold',
-    'unfold.contrib.filters',
-    'unfold.contrib.forms',
-    'unfold.contrib.inlines',
-    'unfold.contrib.import_export',
-    'unfold.contrib.guardian',
-    'unfold.contrib.simple_history',
-]+[
+INSTALLED_APPS = DJANGO_UNFOLD_ADMIN_APPS + [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -61,7 +61,6 @@ INSTALLED_APPS = [
     'rest_framework_api_key',
     'corsheaders',
     'import_export',
-    # 'django_celery_results',
     'django_celery_beat',
 ]
 
