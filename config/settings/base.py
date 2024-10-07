@@ -145,9 +145,15 @@ DATASET_DIR = BASE_DIR / 'dataset'
 CELERY_BROKER_URL: str = env('CELERY_BROKER_URL')
 CELERY_RESULT_BACKEND: str = env('CELERY_RESULT_BACKEND', default='django-db')
 
-CELERY_TIMEZONE: str = 'UTC'  # or your timezone
+CELERY_TIMEZONE: str = TIME_ZONE  # or your timezone
 
 CELERY_ACCEPT_CONTENT: list = ['json']
 CELERY_TASK_SERIALIZER: str = 'json'
 CELERY_RESULT_SERIALIZER: str = 'json'
 CELERY_BEAT_SCHEDULER: str = 'celery.beat.PersistentScheduler'
+
+
+# Asset - Scraper ENV
+
+ASSET_PUBLIC_OFFER_DATA_SOURCE = env('ASSET_PUBLIC_OFFER_DATA_SOURCE')
+ASSET_OFFER_DATA_SOURCE = env('ASSET_OFFER_DATA_SOURCE')

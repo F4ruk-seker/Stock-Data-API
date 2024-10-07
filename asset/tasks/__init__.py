@@ -1,0 +1,1 @@
+from .asset_scraper_task import regular_asset_data_acquisition
