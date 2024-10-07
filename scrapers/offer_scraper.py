@@ -29,7 +29,7 @@ class OfferScraper(Scraper):
                     chart=td[7].find('img').get('src')
                 )
                 self + offer_model  # magic method __add__ > this function add to __data attribute
-            self.set_successful(True)
+            self.set_successful(self > 0)  # if scraped data count > 0
 
     @property
     def data(self) -> list[OfferModel]:

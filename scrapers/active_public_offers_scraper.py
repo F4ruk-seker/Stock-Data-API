@@ -22,7 +22,7 @@ class ActivePublicOfferingScraper(Scraper):
                         if len(detail.find_all('span')) >= 2
                     }
                 )
-            self.set_successful(True)
+            self.set_successful(self > 0)
 
     @property
     def data(self) -> list[ActivePublicOfferingModel]:

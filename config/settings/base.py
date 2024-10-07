@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
+from celery.schedules import crontab
 from datetime import timedelta
 from pathlib import Path
 import environ
@@ -151,6 +152,17 @@ CELERY_ACCEPT_CONTENT: list = ['json']
 CELERY_TASK_SERIALIZER: str = 'json'
 CELERY_RESULT_SERIALIZER: str = 'json'
 CELERY_BEAT_SCHEDULER: str = 'celery.beat.PersistentScheduler'
+
+CELERY_BEAT_SCHEDULE: dict = {
+    'Get Asset Information Every Weekday At 15 Minute Intervals'.lower().replace(' ', '-'): {
+        'task': 'asset.tasks.asset_scraper_task.regular_asset_data_acquisition',
+        'schedule': crontab(minute='*/15', hour='8-18', day_of_week='1-5'),
+    },
+    'Get Public Asset Information Every Weekday At 10 Am'.lower().replace(' ', '-'): {
+        'task': 'asset.tasks.public_asset_scraper_task.regular_public_asset_data_acquisition',
+        'schedule': crontab(hour='7', day_of_week='1-5'),
+    },
+}
 
 
 # Asset - Scraper ENV

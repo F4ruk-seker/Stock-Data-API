@@ -2,7 +2,7 @@
 from __future__ import absolute_import, unicode_literals
 from config.settings.base import env
 from celery import Celery
-from asset.tasks import regular_asset_data_acquisition
+from asset.tasks import regular_asset_data_acquisition, regular_public_asset_data_acquisition
 
 
 env('DJANGO_SETTINGS_MODULE')
@@ -18,7 +18,7 @@ app.autodiscover_tasks()
 def debug_task(self):
     return 2+5
 
-#
+
 # @app.on_after_configure.connect
 # def setup_periodic_tasks(sender, **kwargs):
 #     # 10 saniyede bir çalışacak bir görev örneği
@@ -37,10 +37,14 @@ def debug_task(self):
 #
 # CELERY_TIMEZONE = 'Europe/Istanbul'
 
-
-@app.on_after_configure.connect
-def setup_periodic_tasks(sender, **kwargs):
-    # 10 saniyede bir çalışacak bir görev örneği
-    print('pars>PARS')
-    sender.add_periodic_task(60.0, regular_asset_data_acquisition.s(),
-                             name='regular_asset_data_acquisition - Her 10 saniyede bir')
+#
+# @app.on_after_configure.connect
+# def setup_periodic_tasks(sender, **kwargs):
+#     # 10 saniyede bir çalışacak bir görev örneği
+#     sender.add_periodic_task(60.0, regular_asset_data_acquisition.s(),
+#                              name='regular_asset_data_acquisition - Her 10 saniyede bir')
+#     #
+#     # # 10 saniyede bir çalışacak bir görev örneği
+#     # sender.add_periodic_task(10.0, regular_public_asset_data_acquisition.s(),
+#     #                          name='regular_asset_data_acquisition - Her 10 saniyede bir')
+#

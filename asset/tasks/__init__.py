@@ -1,1 +1,2 @@
 from .asset_scraper_task import regular_asset_data_acquisition
+from .public_asset_scraper_task import regular_public_asset_data_acquisition
