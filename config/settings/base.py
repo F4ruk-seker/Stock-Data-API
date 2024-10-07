@@ -9,6 +9,9 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+
 from celery.schedules import crontab
 from datetime import timedelta
 from pathlib import Path
@@ -169,3 +172,68 @@ CELERY_BEAT_SCHEDULE: dict = {
 
 ASSET_PUBLIC_OFFER_DATA_SOURCE = env('ASSET_PUBLIC_OFFER_DATA_SOURCE')
 ASSET_OFFER_DATA_SOURCE = env('ASSET_OFFER_DATA_SOURCE')
+
+
+# LOGGING
+
+if not DEBUG:
+    sentry_sdk.init(
+        dsn=env('SENTRY_DSN'),
+        integrations=[DjangoIntegration()],
+        traces_sample_rate=1.0,  # Performans takibi için
+        send_default_pii=True  # Kişisel tanımlayıcı bilgileri (PII) gönder
+    )
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose',
+        },
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'debug.log',
+            'formatter': 'verbose',
+        },
+        'sentry': {
+            'level': 'ERROR',  # Yalnızca hata mesajlarını Sentry'e gönder
+            'class': 'sentry_sdk.integrations.logging.EventHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console', 'sentry'],
+            'level': 'DEBUG' ,
+            'propagate': True,
+        },
+        'django.request': {
+            'handlers': ['console', 'sentry'],
+            'level': 'ERROR',  # HTTP isteklerinde oluşan hataları yakala
+            'propagate': False,
+        },
+        'django.db.backends': {
+            'handlers': ['console'],
+            'level': 'INFO',  # SQL sorgularını logla (geliştirme ortamı için)
+            'propagate': False,
+        },
+        'product': {
+            'handlers': ['file', 'console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    }
+}
