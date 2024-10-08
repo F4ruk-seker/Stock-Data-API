@@ -1,4 +1,9 @@
 from abc import ABC
+from datetime import datetime
+import logging
+
+
+logger = logging.getLogger(__name__)
 
 
 class Scraper(ABC):
@@ -7,6 +12,7 @@ class Scraper(ABC):
         self.__data = []
         self.__successful = False
         self.scrape()
+        logger.info(f'Scraper is start |{datetime.now()}|')
 
     @property
     def data(self):

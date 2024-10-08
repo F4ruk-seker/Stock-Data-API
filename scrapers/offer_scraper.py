@@ -33,10 +33,10 @@ class OfferScraper(Scraper):
                     )
                     self + offer_model  # magic method __add__ > this function add to __data attribute
                 self.set_successful(self > 0)  # if scraped data count > 0
-                logger.debug(f'{self.__name__} scraped {len(self)} Assets')
+                logger.debug(f'OfferScraper scraped {len(self)} Assets')
             else:
                 logger.warning(
-                    f'{self.__name__} is get a response and response status code is not 200 != {response.status_code} ')
+                    f'OfferScraper is get a response and response status code is not 200 != {response.status_code} ')
         except Exception as exception:
             logger.exception(exception)
 

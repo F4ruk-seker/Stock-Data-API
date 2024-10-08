@@ -29,10 +29,10 @@ class ActivePublicOfferingScraper(Scraper):
                         }
                     )
                 self.set_successful(self > 0)
-                logger.debug(f'{self.__name__} scraped {len(self)} Assets')
+                logger.debug(f'ActivePublicOfferingScraper scraped {len(self)} Assets')
             else:
                 logger.warning(
-                    f'{self.__name__} is get a response and response status code is not 200 != {response.status_code} ')
+                    f'ActivePublicOfferingScraper is get a response and response status code is not 200 != {response.status_code} ')
         except Exception as exception:
             logger.exception(exception)
 
