@@ -27,7 +27,7 @@ def main():
         with open('requirements.txt', 'w') as f:
             pass
 
-    with open('requirements.txt', 'r', encoding='latin-1') as f:
+    with open('requirements.txt', 'r', encoding='utf-8-sig') as f:
         required_packages = f.read().splitlines()
 
     # Yüklü paketlerle requirements.txt'deki paketleri karşılaştır
