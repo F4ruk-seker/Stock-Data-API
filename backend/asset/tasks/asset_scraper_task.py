@@ -2,8 +2,6 @@ from celery import shared_task
 from scrapers import OfferScraper
 from models import OfferModel
 from config.settings.base import ASSET_OFFER_DATA_SOURCE
-
-
 import logging
 
 logger = logging.getLogger(__name__)

@@ -58,6 +58,7 @@ INSTALLED_APPS = DJANGO_UNFOLD_ADMIN_APPS + [
     # your apps
     'asset',
     'user',
+    'config'
 ]+[
     # third party app
     'rest_framework',
@@ -155,11 +156,12 @@ CELERY_ACCEPT_CONTENT: list = ['json']
 CELERY_TASK_SERIALIZER: str = 'json'
 CELERY_RESULT_SERIALIZER: str = 'json'
 CELERY_BEAT_SCHEDULER: str = 'celery.beat.PersistentScheduler'
+CELERY_ENABLE_UTC = True
 
 CELERY_BEAT_SCHEDULE: dict = {
     'Get Asset Information Every Weekday At 15 Minute Intervals'.lower().replace(' ', '-'): {
         'task': 'asset.tasks.asset_scraper_task.regular_asset_data_acquisition',
-        'schedule': crontab(minute='*/15', hour='8-18', day_of_week='1-5'),
+        'schedule': crontab(minute='15', hour='8-18', day_of_week='1-5'),
     },
     'Get Public Asset Information Every Weekday At 10 Am'.lower().replace(' ', '-'): {
         'task': 'asset.tasks.public_asset_scraper_task.regular_public_asset_data_acquisition',

@@ -2,6 +2,7 @@ import subprocess
 import configparser
 import os
 
+os.chdir('./backend')
 
 # git-config.ini dosyasını oku
 def get_config():

@@ -14,12 +14,14 @@ class AssetOwnershipModel(models.Model):
     tracking = models.BooleanField(default=True)
 
     def get_general_status(self, base_price: float | None = None):
+        print('get_general_status')
         if base_price is None:
             base_price = self.asset.current_price
         remaining_lots: float = .0
         total_profit: float = .0
         if slots := self.slots.all():
             for transaction in slots:
+                print(transaction.progres_type)
                 if transaction.progres_type == transaction.ProgresType.BUY:
                     remaining_lots += transaction.quantity
                     # total_profit += float(transaction.price) * transaction.quantity
