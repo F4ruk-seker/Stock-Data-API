@@ -10,9 +10,6 @@ logger = logging.getLogger(__name__)
 
 class AssetSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
-
-        print(validated_data)
-
         if isinstance(validated_data, dict):
             code = validated_data.get('code')
             instance, created = AssetModel.objects.update_or_create(

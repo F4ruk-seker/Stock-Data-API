@@ -128,7 +128,7 @@ TIME_ZONE = 'Europe/Istanbul'
 
 USE_I18N = True
 
-USE_TZ = False
+USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
@@ -163,7 +163,7 @@ CELERY_BEAT_SCHEDULE: dict = {
     },
     'Get Public Asset Information Every Weekday At 10 Am'.lower().replace(' ', '-'): {
         'task': 'asset.tasks.public_asset_scraper_task.regular_public_asset_data_acquisition',
-        'schedule': crontab(hour='7', day_of_week='1-5'),
+        'schedule': crontab(hour='10', day_of_week='1-5'),
     },
 }
 
@@ -199,7 +199,7 @@ LOGGING = {
     },
     'handlers': {
         'console': {
-            'level': 'DEBUG',
+            'level': 'INFO',
             'class': 'logging.StreamHandler',
             'formatter': 'verbose',
         },
@@ -217,7 +217,7 @@ LOGGING = {
     'loggers': {
         'django': {
             'handlers': ['console', 'sentry'],
-            'level': 'DEBUG' ,
+            'level': 'DEBUG',
             'propagate': True,
         },
         'django.request': {

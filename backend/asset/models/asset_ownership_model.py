@@ -13,20 +13,21 @@ class AssetOwnershipModel(models.Model):
     # sold = models.BooleanField(default=False)
     tracking = models.BooleanField(default=True)
 
-    @property
-    def get_general_status(self):
-        remaining_lots = 0
-        total_profit = 0
+    def get_general_status(self, base_price: float | None = None):
+        if base_price is None:
+            base_price = self.asset.current_price
+        remaining_lots: float = .0
+        total_profit: float = .0
         if slots := self.slots.all():
             for transaction in slots:
                 if transaction.progres_type == transaction.ProgresType.BUY:
                     remaining_lots += transaction.quantity
                     # total_profit += float(transaction.price) * transaction.quantity
-                    total_profit += transaction.quantity * float(self.asset.current_price)
+                    total_profit += transaction.quantity * float(base_price)
                 else:
                     sold_lots = transaction.quantity
                     sale_price = float(transaction.price)
-                    profit = sold_lots * (sale_price - float(self.asset.current_price))
+                    profit = sold_lots * (sale_price - float(base_price))
                     total_profit += profit
                     remaining_lots -= sold_lots
         return {
