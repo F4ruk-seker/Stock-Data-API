@@ -1,6 +1,6 @@
 <template>
-  <div class="text-gray-50 font-semibold h-screen overflow-scroll">
-  <table class="table table-zebra">
+  <div class="text-gray-50 font-semibold flex">
+  <table class="table table-zebra ">
     <!-- head -->
     <thead class="text-gray-50 sticky top-0 z-10 ">
       <tr>
@@ -15,7 +15,7 @@
         <th>Delete <button class="btn" @click="show=!show">show</button></th>
       </tr>
     </thead>
-    <tbody v-if="show" class="">
+    <tbody v-if="show">
       <!-- row 1 -->
       <tr>
         <th>1</th>

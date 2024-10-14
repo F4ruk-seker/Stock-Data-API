@@ -1,10 +1,10 @@
 <template>
-<main class="panel-main content-center justify-center p-0 md:p-5 overflow-hidden">
-    <section class="shadow-sm shadow-cyan-800 backdrop-blur-sm max-h-full justify-center content-center rounded-md">
-        <article>
-            <AppHeader />
+<main class="panel-main h-screen overflow-hidden md:p-8">
+    <section class="grid shadow-sm shadow-cyan-800 backdrop-blur-sm rounded-md border border-red-500 h-full">
+        <article class="min-h-max">
+           <AppHeader />
         </article>
-        <article name="app">
+        <article name="app" class="h-full overflow-x-auto rounded-md relative">
             <slot>
                 slot in
             </slot>
@@ -16,6 +16,7 @@
 
 <script setup>
 import AppHeader from "@/components/AppHeader.vue";
+
 </script>
 
 <style>
