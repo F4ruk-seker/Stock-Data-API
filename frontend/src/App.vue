@@ -1,8 +1,9 @@
 <template>
-  <h1 class="bg-red-150">12</h1>
-  <router-view/>
+  <AppLayouts>
+    <router-view/>
+  </AppLayouts>
 </template>
 
-<style>
-
-</style>
+<script setup>
+import AppLayouts from '@/views/layouts/AppLayouts.vue';
+</script>
