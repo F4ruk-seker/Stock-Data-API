@@ -1,8 +1,8 @@
 <template>
-<div class="navbar bg-base-100">
+<div class="navbar bg-base-100 rounded-t bg-transparent">
   <div class="navbar-start">
     <div class="dropdown">
-      <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+      <div tabindex="0" role="button" class="btn btn-sm btn-ghost lg:hidden">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="h-5 w-5"
@@ -48,7 +48,7 @@
     </ul>
   </div>
   <div class="navbar-end">
-    <a class="btn">Button</a>
+    <a class="btn bg-transparent border-transparent">Button</a>
   </div>
 </div>
 </template>

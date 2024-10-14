@@ -1,14 +1,21 @@
 <template>
-<section class="panel-main flex content-center justify-center p-0 md:p-5">
-    <article name="app" class="w-full m-5 p-2 shadow-sm shadow-cyan-800 backdrop-blur-sm justify-center content-center rounded-md">
-        <slot>
-            slot in
-        </slot>
-    </article>
-</section>
+<main class="panel-main content-center justify-center p-0 md:p-5 overflow-hidden">
+    <section class="shadow-sm shadow-cyan-800 backdrop-blur-sm max-h-full justify-center content-center rounded-md">
+        <article>
+            <AppHeader />
+        </article>
+        <article name="app">
+            <slot>
+                slot in
+            </slot>
+        </article>
+    </section>
+</main>
+
 </template>
 
 <script setup>
+import AppHeader from "@/components/AppHeader.vue";
 </script>
 
 <style>
