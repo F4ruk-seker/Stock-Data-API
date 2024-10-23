@@ -15,12 +15,30 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.core.mail import send_mail
 from django.urls import path, include
 from django.conf import settings
 from config.settings.base import env
+
+from django.shortcuts import HttpResponse
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
+
+def req(r):
+    subject = 'Konu Başlığı'
+    html_content = render_to_string('email_template.html', {'some_context': 'value'})  # HTML şablonunu yükle
+    text_content = strip_tags(html_content)  # HTML'i düz metne çevir
+
+    email = EmailMultiAlternatives(subject, text_content, 'your_email@gmail.com', ['recipient_email@gmail.com'])
+    email.attach_alternative(html_content, "text/html")
+    email.send()
+
+    return HttpResponse('tm')
 
 
 urlpatterns: [path] = [
     path('admin/' if settings.DEBUG else env('PRODUCT_ADMIN_PATH'), admin.site.urls),
     path('api/', include('api.urls'), name='api'),
+    path('', req)
 ]
