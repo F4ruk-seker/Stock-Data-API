@@ -12,7 +12,7 @@ urlpatterns = [
     path('favorites/<code>', FavoriteCreateDeleteView.as_view(), name='favorite'),
     path('<code>/slot', SlotCreateView.as_view()),
     path('<code>/slot/<int:pk>', SlotRetrieveUpdateDestroyView.as_view()),
+    path('code-and-name', AssetSummaryListView.as_view()),
     path('<code>', AssetDetailView.as_view()),
-    path('', AssetListView.as_view())
+    path('', AssetListView.as_view()),
 ]
-

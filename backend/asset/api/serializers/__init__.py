@@ -5,3 +5,4 @@ from .slot_serializer import SlotSerializer
 from .asset_detail_serializer import AssetDetailSerializer
 from .asset_price_flow_serializer import AssetPriceSerializer
 from .asset_ownership_serializer import ShareOwnershipSerializer
+from .assets_only_code_name_serializer import AssetsOnlyNameAndCodeSerializer

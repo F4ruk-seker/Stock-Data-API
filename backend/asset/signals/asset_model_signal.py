@@ -4,7 +4,7 @@ from asset.models.asset_model import AssetModel, AssetPriceModel
 from asset.models import ActivePublicAssetingModel, AssetOwnershipModel
 
 
-def calculate_changing_rate(old_price: float, new_price: float) -> float | int:
+def calculate_changing_rate(old_price: float, new_price: float) -> float | int | None:
     if old_price != new_price:
         price_difference: float = new_price - old_price
         percentage_change: float = (price_difference / abs(old_price)) * 100
@@ -32,7 +32,7 @@ def sync_asset_price_flow(sender, instance, created, **kwargs):
         AssetPriceModel.objects.create(current_price=instance.current_price, asset=instance)
     if created:
         asset_title: str = instance.name.replace(instance.code, '').strip()
-        if active_offer := ActivePublicAssetingModel.objects.filter(title=asset_title).first():
+        if active_offer := ActivePublicAssetingModel.objects.filter(title_eq=asset_title).first():
             print('halka arz tamamlandı')
             print(active_offer)
 

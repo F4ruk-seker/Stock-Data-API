@@ -7,3 +7,4 @@ from .slot_create_view import SlotCreateView
 from .assets_list_view import AssetListView
 from .asset_detail_view import AssetDetailView
 from .asset_owner_list_view import AssetOwnerListView
+from .assets_summary_list_view import AssetSummaryListView

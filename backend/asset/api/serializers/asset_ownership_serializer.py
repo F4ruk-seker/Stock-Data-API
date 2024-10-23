@@ -9,7 +9,6 @@ class ShareOwnershipSerializer(serializers.ModelSerializer):
     slots = SlotSerializer(read_only=True, many=True)
     general_status = serializers.SerializerMethodField()
 
-
     @staticmethod
     def get_general_status(obj):
         return obj.get_general_status()
