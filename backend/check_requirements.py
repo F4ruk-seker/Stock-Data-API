@@ -11,6 +11,12 @@ def get_config():
     return config['settings']['auto_update'].lower() == 'true'
 
 
+def service_is_enabled():
+    config = configparser.ConfigParser()
+    config.read('git-config.ini')
+    return config['settings']['service'].lower() == 'activated'
+
+
 # Yüklü paketleri pip freeze ile al
 def get_installed_packages():
     return subprocess.check_output(["pip", "freeze"], encoding="utf-8-sig").splitlines()
@@ -52,5 +58,5 @@ def main():
         print("requirements.txt zaten güncel.")
 
 
-if __name__ == "__main__":
+if __name__ == "__main__" and service_is_enabled():
     main()
