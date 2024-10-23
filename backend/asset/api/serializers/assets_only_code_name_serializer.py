@@ -5,4 +5,4 @@ from asset.models import AssetModel
 class AssetsOnlyNameAndCodeSerializer(serializers.ModelSerializer):
     class Meta:
         model: AssetModel = AssetModel
-        fields: str = 'code', 'name'
+        fields: str = 'code', 'name', 'logo'
