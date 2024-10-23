@@ -8,9 +8,9 @@ const routes = [
     component: HomeView
   },
   {
-    path: '/about',
-    name: 'about',
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue'),
+    path: '/dash',
+    name: 'dash',
+    component: () => import(/* webpackChunkName: "about" */ '../views/DashView.vue'),
     meta: {
       requiresAuth: false, // auth example
     },

@@ -1,18 +1,57 @@
-name: Docker Image CI
+name: Django Tests
 
 on:
   push:
-    branches: [ "main", "dev" ]
+    branches:
+      - main
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
-
-  build:
-
+  test:
     runs-on: ubuntu-latest
 
+    services:
+      postgres:
+        image: postgres:12
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: test_db
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     steps:
-    - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag asset-manager:$(date +%s)
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.12'
+
+    - name: Install dependencies
+      working-directory: ./backend  # Django backend dizinine geçiyoruz
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Apply migrations
+      working-directory: ./backend  # Backend dizininde migration'ları uyguluyoruz
+      env:
+        DATABASE_URL: postgres://postgres:postgres@localhost:5432/test_db
+      run: |
+        python manage.py migrate
+
+    - name: Run tests
+      working-directory: ./backend  # Backend dizininde testleri çalıştırıyoruz
+      env:
+        DATABASE_URL: postgres://postgres:postgres@localhost:5432/test_db
+      run: |
+        python manage.py test

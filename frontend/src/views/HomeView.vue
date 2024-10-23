@@ -1,8 +1,8 @@
 <template>
-  <div class="text-gray-50 font-semibold flex">
-  <table class="table table-zebra ">
+  <div class="text-gray-50 font-semibold min-h-full ">
+  <table class="table table-zebra min-h-full">
     <!-- head -->
-    <thead class="text-gray-50 sticky top-0 z-10 ">
+    <thead class="text-gray-50 sticky top-0 z-10 min-h-full">
       <tr>
         <th></th>
         <th></th>
@@ -12,10 +12,10 @@
         <th>R</th>
         <th>Chart</th>
         <th>Edit</th>
-        <th>Delete <button class="btn" @click="show=!show">show</button></th>
+        <th>Delete</th>
       </tr>
     </thead>
-    <tbody v-if="show">
+    <tbody class="min-h-full">
       <!-- row 1 -->
       <tr>
         <th>1</th>
@@ -28,216 +28,12 @@
         <td><button class="btn btn-sm outline-cyan-300">Edit</button></td>
         <td><button class="btn btn-sm">Delete</button></td>
       </tr>
-      <tr>
-        <th>1</th>
-        <td><img class="min-h-[34px] max-h-[34px] min-w-[34px] max-w-[34px]" src="https://static.doviz.com/images/stock/THYAO.png"></td>
-        <td>THYAO</td>
-        <td>TURK HAVA YOLLARI</td>
-        <td>264.75</td>
-        <td>-0.66</td>
-        <td><img class="min-h-[34px] max-h-[34px]" src="https://static.doviz.com/images/sparkline/THYAO.svg?t=1728803125"></td>
-        <td><button class="btn btn-sm outline-cyan-300">Edit</button></td>
-        <td><button class="btn btn-sm">Delete</button></td>
-      </tr><tr>
-        <th>1</th>
-        <td><img class="min-h-[34px] max-h-[34px] min-w-[34px] max-w-[34px]" src="https://static.doviz.com/images/stock/THYAO.png"></td>
-        <td>THYAO</td>
-        <td>TURK HAVA YOLLARI</td>
-        <td>264.75</td>
-        <td>-0.66</td>
-        <td><img class="min-h-[34px] max-h-[34px]" src="https://static.doviz.com/images/sparkline/THYAO.svg?t=1728803125"></td>
-        <td><button class="btn btn-sm outline-cyan-300">Edit</button></td>
-        <td><button class="btn btn-sm">Delete</button></td>
-      </tr><tr>
-        <th>1</th>
-        <td><img class="min-h-[34px] max-h-[34px] min-w-[34px] max-w-[34px]" src="https://static.doviz.com/images/stock/THYAO.png"></td>
-        <td>THYAO</td>
-        <td>TURK HAVA YOLLARI</td>
-        <td>264.75</td>
-        <td>-0.66</td>
-        <td><img class="min-h-[34px] max-h-[34px]" src="https://static.doviz.com/images/sparkline/THYAO.svg?t=1728803125"></td>
-        <td><button class="btn btn-sm outline-cyan-300">Edit</button></td>
-        <td><button class="btn btn-sm">Delete</button></td>
-      </tr><tr>
-        <th>1</th>
-        <td><img class="min-h-[34px] max-h-[34px] min-w-[34px] max-w-[34px]" src="https://static.doviz.com/images/stock/THYAO.png"></td>
-        <td>THYAO</td>
-        <td>TURK HAVA YOLLARI</td>
-        <td>264.75</td>
-        <td>-0.66</td>
-        <td><img class="min-h-[34px] max-h-[34px]" src="https://static.doviz.com/images/sparkline/THYAO.svg?t=1728803125"></td>
-        <td><button class="btn btn-sm outline-cyan-300">Edit</button></td>
-        <td><button class="btn btn-sm">Delete</button></td>
-      </tr><tr>
-        <th>1</th>
-        <td><img class="min-h-[34px] max-h-[34px] min-w-[34px] max-w-[34px]" src="https://static.doviz.com/images/stock/THYAO.png"></td>
-        <td>THYAO</td>
-        <td>TURK HAVA YOLLARI</td>
-        <td>264.75</td>
-        <td>-0.66</td>
-        <td><img class="min-h-[34px] max-h-[34px]" src="https://static.doviz.com/images/sparkline/THYAO.svg?t=1728803125"></td>
-        <td><button class="btn btn-sm outline-cyan-300">Edit</button></td>
-        <td><button class="btn btn-sm">Delete</button></td>
-      </tr><tr>
-        <th>1</th>
-        <td><img class="min-h-[34px] max-h-[34px] min-w-[34px] max-w-[34px]" src="https://static.doviz.com/images/stock/THYAO.png"></td>
-        <td>THYAO</td>
-        <td>TURK HAVA YOLLARI</td>
-        <td>264.75</td>
-        <td>-0.66</td>
-        <td><img class="min-h-[34px] max-h-[34px]" src="https://static.doviz.com/images/sparkline/THYAO.svg?t=1728803125"></td>
-        <td><button class="btn btn-sm outline-cyan-300">Edit</button></td>
-        <td><button class="btn btn-sm">Delete</button></td>
-      </tr><tr>
-        <th>1</th>
-        <td><img class="min-h-[34px] max-h-[34px] min-w-[34px] max-w-[34px]" src="https://static.doviz.com/images/stock/THYAO.png"></td>
-        <td>THYAO</td>
-        <td>TURK HAVA YOLLARI</td>
-        <td>264.75</td>
-        <td>-0.66</td>
-        <td><img class="min-h-[34px] max-h-[34px]" src="https://static.doviz.com/images/sparkline/THYAO.svg?t=1728803125"></td>
-        <td><button class="btn btn-sm outline-cyan-300">Edit</button></td>
-        <td><button class="btn btn-sm">Delete</button></td>
-      </tr><tr>
-        <th>1</th>
-        <td><img class="min-h-[34px] max-h-[34px] min-w-[34px] max-w-[34px]" src="https://static.doviz.com/images/stock/THYAO.png"></td>
-        <td>THYAO</td>
-        <td>TURK HAVA YOLLARI</td>
-        <td>264.75</td>
-        <td>-0.66</td>
-        <td><img class="min-h-[34px] max-h-[34px]" src="https://static.doviz.com/images/sparkline/THYAO.svg?t=1728803125"></td>
-        <td><button class="btn btn-sm outline-cyan-300">Edit</button></td>
-        <td><button class="btn btn-sm">Delete</button></td>
-      </tr><tr>
-        <th>1</th>
-        <td><img class="min-h-[34px] max-h-[34px] min-w-[34px] max-w-[34px]" src="https://static.doviz.com/images/stock/THYAO.png"></td>
-        <td>THYAO</td>
-        <td>TURK HAVA YOLLARI</td>
-        <td>264.75</td>
-        <td>-0.66</td>
-        <td><img class="min-h-[34px] max-h-[34px]" src="https://static.doviz.com/images/sparkline/THYAO.svg?t=1728803125"></td>
-        <td><button class="btn btn-sm outline-cyan-300">Edit</button></td>
-        <td><button class="btn btn-sm">Delete</button></td>
-      </tr><tr>
-        <th>1</th>
-        <td><img class="min-h-[34px] max-h-[34px] min-w-[34px] max-w-[34px]" src="https://static.doviz.com/images/stock/THYAO.png"></td>
-        <td>THYAO</td>
-        <td>TURK HAVA YOLLARI</td>
-        <td>264.75</td>
-        <td>-0.66</td>
-        <td><img class="min-h-[34px] max-h-[34px]" src="https://static.doviz.com/images/sparkline/THYAO.svg?t=1728803125"></td>
-        <td><button class="btn btn-sm outline-cyan-300">Edit</button></td>
-        <td><button class="btn btn-sm">Delete</button></td>
-      </tr><tr>
-        <th>1</th>
-        <td><img class="min-h-[34px] max-h-[34px] min-w-[34px] max-w-[34px]" src="https://static.doviz.com/images/stock/THYAO.png"></td>
-        <td>THYAO</td>
-        <td>TURK HAVA YOLLARI</td>
-        <td>264.75</td>
-        <td>-0.66</td>
-        <td><img class="min-h-[34px] max-h-[34px]" src="https://static.doviz.com/images/sparkline/THYAO.svg?t=1728803125"></td>
-        <td><button class="btn btn-sm outline-cyan-300">Edit</button></td>
-        <td><button class="btn btn-sm">Delete</button></td>
-      </tr><tr>
-        <th>1</th>
-        <td><img class="min-h-[34px] max-h-[34px] min-w-[34px] max-w-[34px]" src="https://static.doviz.com/images/stock/THYAO.png"></td>
-        <td>THYAO</td>
-        <td>TURK HAVA YOLLARI</td>
-        <td>264.75</td>
-        <td>-0.66</td>
-        <td><img class="min-h-[34px] max-h-[34px]" src="https://static.doviz.com/images/sparkline/THYAO.svg?t=1728803125"></td>
-        <td><button class="btn btn-sm outline-cyan-300">Edit</button></td>
-        <td><button class="btn btn-sm">Delete</button></td>
-      </tr><tr>
-        <th>1</th>
-        <td><img class="min-h-[34px] max-h-[34px] min-w-[34px] max-w-[34px]" src="https://static.doviz.com/images/stock/THYAO.png"></td>
-        <td>THYAO</td>
-        <td>TURK HAVA YOLLARI</td>
-        <td>264.75</td>
-        <td>-0.66</td>
-        <td><img class="min-h-[34px] max-h-[34px]" src="https://static.doviz.com/images/sparkline/THYAO.svg?t=1728803125"></td>
-        <td><button class="btn btn-sm outline-cyan-300">Edit</button></td>
-        <td><button class="btn btn-sm">Delete</button></td>
-      </tr><tr>
-        <th>1</th>
-        <td><img class="min-h-[34px] max-h-[34px] min-w-[34px] max-w-[34px]" src="https://static.doviz.com/images/stock/THYAO.png"></td>
-        <td>THYAO</td>
-        <td>TURK HAVA YOLLARI</td>
-        <td>264.75</td>
-        <td>-0.66</td>
-        <td><img class="min-h-[34px] max-h-[34px]" src="https://static.doviz.com/images/sparkline/THYAO.svg?t=1728803125"></td>
-        <td><button class="btn btn-sm outline-cyan-300">Edit</button></td>
-        <td><button class="btn btn-sm">Delete</button></td>
-      </tr><tr>
-        <th>1</th>
-        <td><img class="min-h-[34px] max-h-[34px] min-w-[34px] max-w-[34px]" src="https://static.doviz.com/images/stock/THYAO.png"></td>
-        <td>THYAO</td>
-        <td>TURK HAVA YOLLARI</td>
-        <td>264.75</td>
-        <td>-0.66</td>
-        <td><img class="min-h-[34px] max-h-[34px]" src="https://static.doviz.com/images/sparkline/THYAO.svg?t=1728803125"></td>
-        <td><button class="btn btn-sm outline-cyan-300">Edit</button></td>
-        <td><button class="btn btn-sm">Delete</button></td>
-      </tr><tr>
-        <th>1</th>
-        <td><img class="min-h-[34px] max-h-[34px] min-w-[34px] max-w-[34px]" src="https://static.doviz.com/images/stock/THYAO.png"></td>
-        <td>THYAO</td>
-        <td>TURK HAVA YOLLARI</td>
-        <td>264.75</td>
-        <td>-0.66</td>
-        <td><img class="min-h-[34px] max-h-[34px]" src="https://static.doviz.com/images/sparkline/THYAO.svg?t=1728803125"></td>
-        <td><button class="btn btn-sm outline-cyan-300">Edit</button></td>
-        <td><button class="btn btn-sm">Delete</button></td>
-      </tr><tr>
-        <th>1</th>
-        <td><img class="min-h-[34px] max-h-[34px] min-w-[34px] max-w-[34px]" src="https://static.doviz.com/images/stock/THYAO.png"></td>
-        <td>THYAO</td>
-        <td>TURK HAVA YOLLARI</td>
-        <td>264.75</td>
-        <td>-0.66</td>
-        <td><img class="min-h-[34px] max-h-[34px]" src="https://static.doviz.com/images/sparkline/THYAO.svg?t=1728803125"></td>
-        <td><button class="btn btn-sm outline-cyan-300">Edit</button></td>
-        <td><button class="btn btn-sm">Delete</button></td>
-      </tr><tr>
-        <th>1</th>
-        <td><img class="min-h-[34px] max-h-[34px] min-w-[34px] max-w-[34px]" src="https://static.doviz.com/images/stock/THYAO.png"></td>
-        <td>THYAO</td>
-        <td>TURK HAVA YOLLARI</td>
-        <td>264.75</td>
-        <td>-0.66</td>
-        <td><img class="min-h-[34px] max-h-[34px]" src="https://static.doviz.com/images/sparkline/THYAO.svg?t=1728803125"></td>
-        <td><button class="btn btn-sm outline-cyan-300">Edit</button></td>
-        <td><button class="btn btn-sm">Delete</button></td>
-      </tr><tr>
-        <th>1</th>
-        <td><img class="min-h-[34px] max-h-[34px] min-w-[34px] max-w-[34px]" src="https://static.doviz.com/images/stock/THYAO.png"></td>
-        <td>THYAO</td>
-        <td>TURK HAVA YOLLARI</td>
-        <td>264.75</td>
-        <td>-0.66</td>
-        <td><img class="min-h-[34px] max-h-[34px]" src="https://static.doviz.com/images/sparkline/THYAO.svg?t=1728803125"></td>
-        <td><button class="btn btn-sm outline-cyan-300">Edit</button></td>
-        <td><button class="btn btn-sm">Delete</button></td>
-      </tr><tr>
-        <th>1</th>
-        <td><img class="min-h-[34px] max-h-[34px] min-w-[34px] max-w-[34px]" src="https://static.doviz.com/images/stock/THYAO.png"></td>
-        <td>THYAO</td>
-        <td>SLOT</td>
-        <td>264.75</td>
-        <td>-0.66</td>
-        <td><img class="min-h-[34px] max-h-[34px]" src="https://static.doviz.com/images/sparkline/THYAO.svg?t=1728803125"></td>
-        <td><button class="btn btn-sm outline-cyan-300">Edit</button></td>
-        <td><button class="btn btn-sm">Delete</button></td>
-      </tr>
     </tbody>
   </table>
 </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
-
-const show = ref(false)
 /*
     {
         "id": 1,
@@ -275,5 +71,6 @@ const show = ref(false)
         "tracking": true,
         "owner": 1
     }
+
 */
 </script>

@@ -1,10 +1,10 @@
 <template>
-<main class="panel-main h-screen overflow-hidden md:p-8">
-    <section class="grid shadow-sm shadow-cyan-800 backdrop-blur-sm rounded-md border border-red-500 h-full">
-        <article class="min-h-max">
+<main class="panel-main h-screen overflow-hidden p-0 sm:p-6 md:p-8 font-mono">
+    <section class="grid shadow-lg backdrop-blur rounded-md h-full grid-rows-[auto,1fr]">
+        <article class="h-auto ">
            <AppHeader />
         </article>
-        <article name="app" class="h-full overflow-x-auto rounded-md relative">
+        <article name="app" class="min-h-full max-h-full overflow-x-auto rounded-md relative flex-1 flex-wrap grid-cols-1">
             <slot>
                 slot in
             </slot>
