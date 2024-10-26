@@ -31,3 +31,4 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 TEST_DATA_DIR = BASE_DIR / 'test_data'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
