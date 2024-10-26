@@ -13,6 +13,10 @@ from django_celery_beat.admin import CrontabScheduleAdmin as BaseCrontabSchedule
 from django_celery_beat.admin import PeriodicTaskAdmin as BasePeriodicTaskAdmin
 from django_celery_beat.admin import PeriodicTaskForm, TaskSelectWidget
 from unfold.widgets import UnfoldAdminSelectWidget, UnfoldAdminTextInputWidget
+from django.contrib.auth.models import User, Group
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+from django.contrib.auth.admin import GroupAdmin as BaseGroupAdmin
+
 
 admin.site.unregister(PeriodicTask)
 admin.site.unregister(IntervalSchedule)
@@ -53,4 +57,18 @@ class SolarScheduleAdmin(ModelAdmin):
 
 @admin.register(ClockedSchedule)
 class ClockedScheduleAdmin(BaseClockedScheduleAdmin, ModelAdmin):
+    pass
+
+
+admin.site.unregister(User)
+admin.site.unregister(Group)
+
+
+@admin.register(User)
+class UserAdmin(BaseUserAdmin, ModelAdmin):
+    pass
+
+
+@admin.register(Group)
+class GroupAdmin(BaseGroupAdmin, ModelAdmin):
     pass
