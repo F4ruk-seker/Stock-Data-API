@@ -15,7 +15,7 @@
         </thead>
         <tbody class="font-bold">
           <template v-for="(asset, index) in assets" :key="index">
-            <tr class="odd:bg-gray-50 odd:hover:bg-gray-200 even:hover:bg-gray-200">
+            <tr class="odd:bg-gray-100 odd:hover:bg-gray-200 even:hover:bg-gray-200">
                 <td class="px-4 py-2">{{ asset.asset.code }}</td>
                 <td class="px-4 py-2">{{ asset.asset.name }}</td>
                 <td class="px-4 py-2">{{ asset.asset.current_price }}</td>
