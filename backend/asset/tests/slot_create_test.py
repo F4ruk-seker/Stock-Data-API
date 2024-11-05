@@ -7,7 +7,7 @@ from rest_framework import status
 from typing import NoReturn, AnyStr
 
 
-class SlotCreateTest(APITestCase):
+class SlotTest(APITestCase):
     def setUp(self) -> NoReturn:
         self.client = APIClient()
         self.fake_assets = self.create_fake_assets()
@@ -15,13 +15,24 @@ class SlotCreateTest(APITestCase):
             username='echo',
             password='echo12345!'
         )
-        self.client.force_authenticate(user=self.user)
+        self.second_user: User = User.objects.create_user(
+            username='BAD_BOY_666',
+            password='echo12345!'
+        )
+        # self.client.force_authenticate(user=self.user)
         self.selected_asset: AssetModel = AssetModel.objects.first()
 
     @staticmethod
-    def get_slot_create_url(slot_code: str) -> AnyStr:
+    def get_slot_create_url(asset_code: str) -> AnyStr:
         return resolve_url(reverse('api:asset:slot_create', kwargs={
-            'code': slot_code
+            'code': asset_code
+        }))
+
+    @staticmethod
+    def get_slot_retrieve_update_destroy_url(asset_code: str, slot_id: int) -> AnyStr:
+        return resolve_url(reverse('api:asset:slot', kwargs={
+            'code': asset_code,
+            'pk': slot_id
         }))
 
     @staticmethod
@@ -44,16 +55,18 @@ class SlotCreateTest(APITestCase):
         AssetModel.objects.bulk_create(assets)
         return assets
 
-    def get_asset_owner_ship_model(self, asset: AssetModel) -> AssetOwnershipModel:
-        return AssetOwnershipModel.objects.create(
+    @staticmethod
+    def get_asset_owner_ship_model(user: User, asset: AssetModel) -> AssetOwnershipModel:
+        asset_ownership, created = AssetOwnershipModel.objects.get_or_create(
             asset=asset,
-            owner=self.user,
+            owner=user,
         )
+        return asset_ownership
 
     def test_user_cant_create_slot_without_asset_ownership(self) -> NoReturn:
         """Test User Can't Create Slot Without Asset Owner Ship"""
         self.client.force_authenticate(user=self.user)
-        # self.get_asset_owner_ship_model(asset=self.selected_asset)
+        # self.get_asset_owner_ship_model(user=self.user, asset=self.selected_asset)
         request = self.client.post(
             path=self.get_slot_create_url(self.selected_asset.code),
             data={
@@ -67,7 +80,7 @@ class SlotCreateTest(APITestCase):
     def test_user_can_create_slot_with_asset_ownership(self) -> NoReturn:
         """Test User Can Create Slot With Asset Ownership"""
         self.client.force_authenticate(user=self.user)
-        self.get_asset_owner_ship_model(asset=self.selected_asset)
+        self.get_asset_owner_ship_model(user=self.user, asset=self.selected_asset)
         request = self.client.post(
             path=self.get_slot_create_url(self.selected_asset.code),
             data={
@@ -80,9 +93,37 @@ class SlotCreateTest(APITestCase):
 
     def test_user_cant_get_request_at_the_slot_api(self) -> NoReturn:
         """Test User Cant Get Request At The Slot Api"""
+        self.client.force_authenticate(user=self.user)
         request = self.client.get(self.get_slot_create_url(self.selected_asset.code))
         self.assertEqual(status.HTTP_405_METHOD_NOT_ALLOWED, request.status_code)
 
-    '''
-        path('<code>/slot/<int:pk>', SlotRetrieveUpdateDestroyView.as_view()),
-    '''
+    def test_user_can_only_update_own_slot(self):
+        """Test User Can Only Update Own Slot"""
+
+    def test_users_can_only_see_their_own_slots(self):
+        """Users Can Only See Their Own Slots"""
+
+        self.test_user_can_create_slot_with_asset_ownership()
+        asset_owner_ship = AssetOwnershipModel.objects.first()
+        slot = asset_owner_ship.slots.first()
+        self.assertEqual(type(slot), SlotModel)
+
+        # good boy
+        request = self.client.get(
+            self.get_slot_retrieve_update_destroy_url(
+                asset_code=self.selected_asset.code,
+                slot_id=slot.id
+            )
+        )
+        self.assertEqual(status.HTTP_200_OK, request.status_code)
+
+        # bad user
+        self.client.logout()
+        self.client.force_authenticate(user=self.second_user)
+        request = self.client.get(
+            self.get_slot_retrieve_update_destroy_url(
+                asset_code=self.selected_asset.code,
+                slot_id=slot.id
+            )
+        )
+        self.assertEqual(status.HTTP_404_NOT_FOUND, request.status_code)
