@@ -180,14 +180,6 @@ ASSET_OFFER_DATA_SOURCE = env('ASSET_OFFER_DATA_SOURCE')
 
 # LOGGING
 
-if not DEBUG:
-    sentry_sdk.init(
-        dsn=env('SENTRY_DSN'),
-        integrations=[DjangoIntegration()],
-        traces_sample_rate=1.0,  # Performans takibi için
-        send_default_pii=True  # Kişisel tanımlayıcı bilgileri (PII) gönder
-    )
-
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,

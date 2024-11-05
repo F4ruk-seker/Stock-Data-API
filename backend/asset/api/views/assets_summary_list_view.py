@@ -7,3 +7,4 @@ class AssetSummaryListView(ListAPIView):
     model: AssetModel = AssetModel
     serializer_class: AssetsOnlyNameAndCodeSerializer = AssetsOnlyNameAndCodeSerializer
     queryset = model.objects.only('code', 'name', 'logo')
+

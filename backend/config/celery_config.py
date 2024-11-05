@@ -18,7 +18,6 @@ app.autodiscover_tasks()
 def debug_task(self):
     return 2+5
 
-
 # @app.on_after_configure.connect
 # def setup_periodic_tasks(sender, **kwargs):
 #     # 10 saniyede bir çalışacak bir görev örneği

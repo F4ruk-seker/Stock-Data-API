@@ -58,4 +58,12 @@ STATIC_ROOT = BASE_DIR / 'staticfiles/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
+
 raise NotImplementedError('mail settings is not set')
+
+sentry_sdk.init(
+    dsn=env('SENTRY_DSN'),
+    integrations=[DjangoIntegration()],
+    traces_sample_rate=1.0,  # Performans takibi için
+    send_default_pii=True  # Kişisel tanımlayıcı bilgileri (PII) gönder
+)

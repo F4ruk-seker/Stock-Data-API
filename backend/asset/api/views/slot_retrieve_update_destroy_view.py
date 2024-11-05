@@ -1,6 +1,7 @@
+from django.contrib.auth.models import User
 from rest_framework.generics import RetrieveUpdateDestroyAPIView
 from asset.api.serializers import SlotSerializer
-from asset.models import AssetOwnershipModel
+from asset.models import AssetOwnershipModel, SlotModel
 from django.shortcuts import get_object_or_404
 
 
@@ -14,3 +15,6 @@ class SlotRetrieveUpdateDestroyView(RetrieveUpdateDestroyAPIView):
         user = self.request.user
         asset_owner = get_object_or_404(AssetOwnershipModel, owner=user, asset=code)
         return asset_owner.slots.filter(pk=pk)
+
+
+

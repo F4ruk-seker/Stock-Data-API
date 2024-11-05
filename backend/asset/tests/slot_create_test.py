@@ -99,6 +99,46 @@ class SlotTest(APITestCase):
 
     def test_user_can_only_update_own_slot(self):
         """Test User Can Only Update Own Slot"""
+        def send_update_slot_request():
+            return self.client.put(
+                self.get_slot_retrieve_update_destroy_url(
+                    asset_code=self.selected_asset.code,
+                    slot_id=slot.id
+                ),
+                {
+                    "progres_type": SlotModel.ProgresType.BUY,
+                    "price": "10.11",
+                    "quantity": 1
+                }
+            )
+
+        def send_slot_delete_request():
+            return self.client.delete(
+                self.get_slot_retrieve_update_destroy_url(
+                    asset_code=self.selected_asset.code,
+                    slot_id=slot.id
+                )
+            )
+
+        self.client.force_authenticate(user=self.user)
+        self.test_user_can_create_slot_with_asset_ownership()
+
+        asset_owner_ship = AssetOwnershipModel.objects.first()
+        slot = asset_owner_ship.slots.first()
+        self.assertEqual(type(slot), SlotModel)
+
+        request = send_update_slot_request()
+        self.assertEqual(status.HTTP_200_OK, request.status_code)
+
+        # UPDATE Bad Boy
+        self.client.logout()
+        self.client.force_authenticate(user=self.second_user)
+
+        request = send_update_slot_request()
+        self.assertEqual(status.HTTP_404_NOT_FOUND, request.status_code)
+
+        request = send_slot_delete_request()
+        self.assertEqual(status.HTTP_404_NOT_FOUND, request.status_code)
 
     def test_users_can_only_see_their_own_slots(self):
         """Users Can Only See Their Own Slots"""
